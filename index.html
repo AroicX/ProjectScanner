@@ -6,21 +6,20 @@
   </head>
   <body>
 
+
+<style>
+      #preview{
+        width: auto;
+        height: 750px;
+        border: 1px solid green;
+        margin-bottom: 300px;
+      }
+
+    </style>
+
+    
     <video id="preview"></video>
-    <textarea name="details" id="getView" cols="30" rows="10"></textarea>
-
-
-    <div>
-      <p>Camera 0</p>
-     <textarea name="details" id="getView0" cols="30" rows="10"></textarea>
-     <p>Camera 1</p>
-         <textarea name="details" id="getView1" cols="30" rows="10"></textarea>
-     <p>Camera 2</p>
-         <textarea name="details" id="getView2" cols="30" rows="10"></textarea>
-      <p>Camera 3</p>
-         <textarea name="details" id="getView3" cols="30" rows="10"></textarea>
-
-    </div>
+   
     <script type="text/javascript">
       let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
       scanner.addListener('scan', function (content) {
@@ -31,10 +30,7 @@
       
 
         if (cameras.length > 0) {
-           document.getElementById('getView0').value = JSON.stringify(cameras[0]);
-           document.getElementById('getView1').value = JSON.stringify(cameras[1]);
-           document.getElementById('getView2').value = JSON.stringify(cameras[2]);
-           document.getElementById('getView3').value = JSON.stringify(cameras[3]);
+         
          
           scanner.start(cameras[2]);
         } else {
