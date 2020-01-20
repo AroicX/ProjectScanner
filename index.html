@@ -5,6 +5,7 @@
     <script type="text/javascript" src="instascan.min.js"></script>
   </head>
   <body>
+
     <video id="preview"></video>
     <textarea name="details" id="getView" cols="30" rows="10"></textarea>
     <script type="text/javascript">
@@ -14,7 +15,7 @@
       });
       Instascan.Camera.getCameras().then(function (cameras) {
        
-       document.getElementById('getView').value = JSON.stringify(cameras);
+       document.getElementById('getView').value = JSON.stringify(cameras[0]);
 
         if (cameras.length > 0) {
           console.log(cameras[0])
