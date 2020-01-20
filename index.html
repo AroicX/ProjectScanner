@@ -6,15 +6,19 @@
   </head>
   <body>
     <video id="preview"></video>
+    <textarea name="details" id="getView" cols="30" rows="10"></textarea>
     <script type="text/javascript">
       let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
       scanner.addListener('scan', function (content) {
         alert(content);
       });
       Instascan.Camera.getCameras().then(function (cameras) {
-        console.log(cameras)
+       
+       let text = document.getElementById('getView');
+       text.value(cameras)
+
         if (cameras.length > 0) {
-          scanner.start(cameras[3]);
+          scanner.start(cameras[0]);
         } else {
           console.error('No cameras found.');
         }
