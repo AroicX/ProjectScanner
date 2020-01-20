@@ -8,6 +8,19 @@
 
     <video id="preview"></video>
     <textarea name="details" id="getView" cols="30" rows="10"></textarea>
+
+
+    <div>
+      <p>Camera 0</p>
+     <textarea name="details" id="getView0" cols="30" rows="10"></textarea>
+     <p>Camera 1</p>
+         <textarea name="details" id="getView1" cols="30" rows="10"></textarea>
+     <p>Camera 2</p>
+         <textarea name="details" id="getView2" cols="30" rows="10"></textarea>
+      <p>Camera 3</p>
+         <textarea name="details" id="getView3" cols="30" rows="10"></textarea>
+
+    </div>
     <script type="text/javascript">
       let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
       scanner.addListener('scan', function (content) {
@@ -15,13 +28,14 @@
       });
       Instascan.Camera.getCameras().then(function (cameras) {
        
-       document.getElementById('getView').value = JSON.stringify(cameras[1]);
+      
 
         if (cameras.length > 0) {
-          console.log('camera 0',cameras[0])
-          console.log('camera 1',cameras[1])
-          console.log('camera 2',cameras[2])
-          console.log('camera 3',cameras[3])
+           document.getElementById('getView0').value = JSON.stringify(cameras[0]);
+           document.getElementById('getView1').value = JSON.stringify(cameras[1]);
+           document.getElementById('getView2').value = JSON.stringify(cameras[2]);
+           document.getElementById('getView3').value = JSON.stringify(cameras[3]);
+         
           scanner.start(cameras[0]);
         } else {
           console.error('No cameras found.');
