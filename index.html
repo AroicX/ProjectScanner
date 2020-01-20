@@ -15,10 +15,13 @@
       });
       Instascan.Camera.getCameras().then(function (cameras) {
        
-       document.getElementById('getView').value = JSON.stringify(cameras[0]);
+       document.getElementById('getView').value = JSON.stringify(cameras[1]);
 
         if (cameras.length > 0) {
-          console.log(cameras)
+          console.log('camera 0'cameras[0])
+          console.log('camera 1'cameras[1])
+          console.log('camera 2'cameras[2])
+          console.log('camera 3'cameras[3])
           scanner.start(cameras[0]);
         } else {
           console.error('No cameras found.');
