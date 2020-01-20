@@ -18,7 +18,7 @@
        document.getElementById('getView').value = JSON.stringify(cameras[0]);
 
         if (cameras.length > 0) {
-          console.log(cameras[0])
+          console.log(cameras)
           scanner.start(cameras[0]);
         } else {
           console.error('No cameras found.');
