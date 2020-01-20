@@ -14,8 +14,7 @@
       });
       Instascan.Camera.getCameras().then(function (cameras) {
        
-       let text = document.getElementById('getView');
-       text.value(cameras)
+       document.getElementById('getView').value = JSON.stringify(cameras);
 
         if (cameras.length > 0) {
           scanner.start(cameras[0]);
