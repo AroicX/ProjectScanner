@@ -1,46 +1,76 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Instascan</title>
-    <script type="text/javascript" src="instascan.min.js"></script>
-  </head>
-  <body>
+
+<head>
+  <title>Instascan</title>
+  <script type="text/javascript" src="instascan.min.js"></script>
+</head>
+
+<body>
 
 
-<style>
-      #preview{
-        width: auto;
-        height: 750px;
-        border: 1px solid green;
-        margin-bottom: 300px;
+  <style>
+    #preview {
+      /* position: absolute; */
+      /* top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); */
+      width: 500px;
+      height: 750px;
+      border: 1px solid green;
+      margin-bottom: 300px;
+    }
+  </style>
+
+  <div class="wrapper">
+    <label for="camera">Select Your Camera </label>
+    <select name="camera" id="getCam">
+      <option value="0">--No Selected ---</option>
+
+    </select>
+  </div>
+
+  <video id="preview"></video>
+  <textarea name="details" id="getView" cols="30" rows="10"></textarea>
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    let scanner = new Instascan.Scanner({
+      video: document.getElementById('preview')
+    });
+    scanner.addListener('scan', function (content) {
+      alert(content);
+    });
+    Instascan.Camera.getCameras().then(function (cameras) {
+
+
+
+      if (cameras.length > 0) {
+
+
+        // console.log(cameras)
+
+        cameras.map((item, key) => {
+          $('#getCam').html("<option value=" + key + ">" + item.name + "</option>");
+        })
+
+        $("#getCam").change(function () {
+          let val = $(this).val();
+          // scanner.end();
+          scanner.start(cameras[val]);
+          // console.log();
+        });
+
+        scanner.start(cameras[0]);
+      } else {
+        console.error('No cameras found.');
       }
+    }).catch(function (e) {
+      console.error(e);
+    });
+  </script>
+</body>
 
-    </style>
-
-    
-    <video id="preview"></video>
-   
-    <script type="text/javascript">
-      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-      scanner.addListener('scan', function (content) {
-        alert(content);
-      });
-      Instascan.Camera.getCameras().then(function (cameras) {
-       
-      
-
-        if (cameras.length > 0) {
-         
-         
-          scanner.start(cameras[2]);
-        } else {
-          console.error('No cameras found.');
-        }
-      }).catch(function (e) {
-        console.error(e);
-      });
-
-
-    </script>
-  </body>
 </html>
