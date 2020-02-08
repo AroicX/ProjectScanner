@@ -53,7 +53,7 @@
         // console.log(cameras)
 
         cameras.map((item, key) => {
-          $('#getCam').html("<option value=" + key + ">" + item.name + "</option>");
+          $('#getCam').append("<option value=" + key + ">" + item.name + "</option>");
         })
 
         $("#getCam").change(function () {
